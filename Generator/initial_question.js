@@ -22,7 +22,7 @@ function initialPrompt() {
           return false;
         }
       }
-    },  
+    },
   ]
 
   return initialQuestions;
