@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+
+//function to generate HTML for Profiles
+function generateHTML(data) {
+    return `<!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
@@ -7,11 +10,15 @@
       <title>Document</title>
     </head>
     <h1>hello world<h1>
-    <h2>Office Number: 345
+    <h2>Office Number: ${data.office1}
     <body>
       
     </body>
     </html>
    
  
- 
+ `;
+ } 
+
+
+module.exports = generateHTML;

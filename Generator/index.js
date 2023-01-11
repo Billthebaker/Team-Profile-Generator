@@ -1,80 +1,67 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkdown = require('./utils/generateMarkdown');
+const generateHTML = require('./utils/generateHTML');
+const initialPrompt = require('./initial_question');
+const managerPrompt = require('./manager_questions');
+const engineerPrompt = require('./engineer_questions');
+const internPrompt = require('./intern_questions');
 
-// array of questions for user input
-const questions = [
-  {
-    type:'input',
-    name:'title',
-    message:'What is the title of your repo?'
-  },
-  {
-    type:'input',
-    name:'description',
-    message:'Describe your repo'
-  },
-  {
-    type:'input',
-    name:'installation',
-    message:'how to install files'
-  },
-  {
-    type:'input',
-    name:'usage',
-    message:'how to use this'
-  },
-  {
-    type:'input',
-    name:'contributing',
-    message:'contributing designers'
-  },
-  {
-    type:'input',
-    name:'tests',
-    message:'past present future tests'
-  },
-  {
-    type: 'list',
-    name: 'license',
-    message: 'What license did you use?',
-    choices: ['MIT', 'Apachi', 'Eclipse', 'ISC', 'Perl', 'Boost'],
-  },
-  {
-    type:'input',
-    name:'qUsername',
-    message:'enter your github username'
-  },
-  {
-    type:'input',
-    name:'qGit',
-    message:'enter URL to your github account'
-  },
-  {
-    type:'input',
-    name:'qEmail',
-    message:'enter your email address'
-  },
+const initialQuestions = initialPrompt();
+const managerQuestions = managerPrompt();
+const engineerQuestions = engineerPrompt();
+const internQuestions = internPrompt();
+// console.log(initialQuestions);
 
-
-]
-
-
-//function to write README file
+//function to write HTML
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) => 
   err ? console.error(err) : console.log("Success!"))
 }
 
 //function to initialize app
-function init() {
-  inquirer.prompt(questions)
-  .then(function(answers){
-    console.log(answers)
-   const content = generateMarkdown(answers)
-   writeToFile('index.html', content)
+// function init() {
+//   inquirer.prompt(initialQuestions)
+//   .then(function(answers){
+//     console.log(answers)
+//    const content = generateHTML(answers)
+//    writeToFile('index.html', content)
+//   })
+// }
+
+function addManager() {
+  return inquirer.prompt(managerQuestions);
+}
+
+function addEngineer(){
+  return inquirer.prompt(engineerQuestions);
+}
+
+function addIntern() {
+  return inquirer.prompt(internQuestions);
+}
+
+function addEmployee() {
+  return inquirer.prompt(
+    [
+      {
+        type: 'input',
+        message: 'Do you want to add engineer or intern?',
+        name: 'engineer_or_intern',
+      }
+    ]
+  ).then(function (answers) {
+    if (answers.engineer_or_intern === "engineer") return addEngineer();
+    else if (answers.engineer_or_intern === "intern") return addIntern();
   })
 }
 
+function test() {
+  return inquirer.prompt(initialQuestions)
+  .then(addManager)
+  .then(addEmployee)
+}
+
+
 // Function call to initialize app
-init();
+// init();
+test();
