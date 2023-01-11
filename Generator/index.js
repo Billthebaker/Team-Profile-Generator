@@ -59,7 +59,10 @@ function test() {
   return inquirer.prompt(initialQuestions)
   .then(addManager)
   .then(addEmployee)
+  .then(generateHTML)
 }
+
+module.exports = addEmployee
 
 
 // Function call to initialize app

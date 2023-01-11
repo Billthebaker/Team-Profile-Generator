@@ -1,3 +1,4 @@
+const managerPrompt = require("../manager_questions");
 
 //function to generate HTML for Profiles
 function generateHTML(data) {
@@ -9,8 +10,8 @@ function generateHTML(data) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Document</title>
     </head>
-    <h1>hello world<h1>
-    <h2>Office Number: ${data.office1}
+    <h1>NACHO CHEESE DORITOS<h1>
+    <h2>Office Number: ${data.manager_office}
     <body>
       
     </body>

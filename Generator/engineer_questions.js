@@ -1,3 +1,5 @@
+const addEmployee = require(".");
+
 function engineerPrompt() {
     const engineerQuestions = [
         {
@@ -12,21 +14,34 @@ function engineerPrompt() {
         },
         {
             type: 'input',
+            message: "What is your Email address?",
+            name: 'engineer_email'
+        },
+        {
+            type: 'input',
+            message: "What is your github username?",
+            name: 'engineer_git'
+        },
+        {
+            type: 'input',
             message: 'Do you want to add more employees? (Type "yes" or "no")',
             name: 'want_employee',
+        },
+        {
             validate: (answer) => {
-                if (answer === "yes") return true;
+                if (answer === "yes") return addEmployee;
                 else if (answer === "no") {
-                  console.log("");
-                  console.log("Good bye");
-                  return process.exit();
+                    console.log("");
+                    console.log("Good bye");
+                    return process.exit();
                 }
                 else {
-                  console.log("");
-                  console.log("Please type 'yes' or 'no'!");
-                  return false;
+                    console.log("");
+                    console.log("Please type 'yes' or 'no'!");
+                    return false;
                 }
-              }
+
+            }
         }
     ]
 
