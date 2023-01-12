@@ -1,10 +1,7 @@
-const managerPrompt = require("../manager_questions");
-const engineerPrompt = require("../engineer_questions")
-const mainPrompt = require("../index");
-const addManager = require("../index");
 
 //function to generate HTML for Profiles
-function generateHTML(answers) {
+function generateHTML(answer) {
+    console.log(answer)
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -13,9 +10,16 @@ function generateHTML(answers) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Document</title>
     </head>
-    <h1>NACHO CHEESE DORITOS<h1>
-    <h2>Office Number: ${answers.manager_office}
-    <body>
+    <h1>Team Roster<h1>
+    <h2> Engineer Roster </h2
+    <li> Engineer Name:${answer.engineer_name}
+    Engineer ID number:${answer.engineer_id}
+   Engineer Email: ${answer.engineer_email}
+    Engineer Github:${answer.engineer_git}
+
+    <h2> Intern Roster</h2>
+    Intern Name:${answer.intern_name}
+    
       
     </body>
     </html>
